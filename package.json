@@ -1,5 +1,5 @@
 {
-  "name": "material-tailwind-dashboard-react",
+  "name": "pays-frontend-task",
   "private": true,
   "version": "2.1.0",
   "type": "module",
@@ -19,14 +19,15 @@
     "react-router-dom": "6.17.0"
   },
   "devDependencies": {
-    "@types/react": "18.2.31",
-    "@types/react-dom": "18.2.14",
+    "@types/react": "^18.2.31",
+    "@types/react-dom": "^18.2.14",
     "@vitejs/plugin-react": "4.1.0",
     "autoprefixer": "10.4.16",
     "postcss": "8.4.31",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.6",
     "tailwindcss": "3.3.4",
+    "typescript": "^5.9.3",
     "vite": "4.5.0"
   }
 }

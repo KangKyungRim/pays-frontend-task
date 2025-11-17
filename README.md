@@ -114,9 +114,9 @@ material-tailwind-dashboard-react
     │   ├── layouts
     │   ├── pages
     │   ├── widgets
-    │   ├── App.jsx
-    │   ├── main.jsx
-    │   └── routes.jsx
+    │   ├── App.tsx
+    │   ├── main.tsx
+    │   └── routes.tsx
     ├── .gitignore
     ├── CHANGELOG.md
     ├── index.html
@@ -128,7 +128,7 @@ material-tailwind-dashboard-react
     ├── prettier.config.cjs
     ├── README.md
     ├── tailwind.config.cjs
-    └── vite.config.js
+    └── vite.config.ts
 ```
 
 ## Browser Support

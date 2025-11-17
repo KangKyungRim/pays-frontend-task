@@ -14,7 +14,7 @@
 - Migration to React 18
 - Migration to React Router DOM 6
 - Migration to @material-tailwind/react latest version
-- Migration from chart.js to apexcharts
+- Migration from chart.ts to apexcharts
 - Add global context support
 
 ## [1.1.0] 2021-06-10

@@ -59,7 +59,7 @@ export function Configurator() {
     const stars = fetch(
       "https://api.github.com/repos/creativetimofficial/material-tailwind-dashboard-react"
     )
-      .then((response) => response.json())
+      .then((response) => response.tson())
       .then((data) => setStars(formatNumber(data.stargazers_count, 1)));
   }, []);
 
@@ -232,6 +232,6 @@ export function Configurator() {
   );
 }
 
-Configurator.displayName = "/src/widgets/layout/configurator.jsx";
+Configurator.displayName = "/src/widgets/layout/configurator.tsx";
 
 export default Configurator;
