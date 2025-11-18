@@ -1,13 +1,11 @@
 import {
   HomeIcon,
-  UserCircleIcon,
   TableCellsIcon,
   InformationCircleIcon,
-  ServerStackIcon,
-  RectangleStackIcon,
+  UserCircleIcon,
+  BanknotesIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
-import { SignIn, SignUp } from "@/pages/auth";
+import { Home, Payments, Profile, Tables, Notifications } from "@/pages/dashboard";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -19,9 +17,15 @@ export const routes = [
     pages: [
       {
         icon: <HomeIcon {...icon} />,
-        name: "dashboard",
+        name: "홈",
         path: "/home",
         element: <Home />,
+      },
+      {
+        icon: <BanknotesIcon {...icon} />,
+        name: "거래 내역",
+        path: "/payments",
+        element: <Payments />,
       },
       {
         icon: <UserCircleIcon {...icon} />,
