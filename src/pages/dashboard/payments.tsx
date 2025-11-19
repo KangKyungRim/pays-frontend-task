@@ -3,55 +3,45 @@ import {
   Card,
   CardBody,
   Typography,
-  Avatar,
   Chip,
-  Tooltip,
-  Progress,
 } from "@material-tailwind/react";
-import { fetchPayments } from "@/apis/fetchPayments";
-import { fetchMerchantDetail } from "@/apis/fetchMerchantDetail";
+import { usePaymentsStore } from "@/stores/paymentsStore";
+import { useMerchantStore } from "@/stores/merchantStore";
 import { PaymentItem } from "@/types/payments";
 import Pagination from "@/components/Pagination";
 import Loader from "@/components/Loader";
 
 export function Payments() {
-  const [payments, setPayments] = useState<PaymentItem[]>([]);
-  const [merchantNames, setMerchantNames] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(true);
+  const { payments, loading, fetchPaymentsData } = usePaymentsStore();
+  const { merchants, fetchMerchantDetail } = useMerchantStore();
+
+  // 페이지네이션
+  const pageSize = 10;
+  const [page, setPage] = useState(1);
+  const reversedPayments = [...payments].reverse();
+
+  const pagedData = reversedPayments.slice(
+    (page - 1) * pageSize,
+    page * pageSize
+  );
+  const totalPages = Math.ceil(payments.length / pageSize);
 
   // 거래 내역 조회
   useEffect(() => {
-    const getPaymentsAndMerchants = async () => {
-      try {
-        // 내역 조회
-        const res = await fetchPayments();
-        setPayments(res.data);
-        
-        // 가맹점 코드
-        const codes = res.data.map(p => p.mchtCode);
-  
-        // 가맹점 조회
-        const merchantMap: Record<string, string> = {};
-        await Promise.all(
-          codes.map(async (code) => {
-            if (!merchantMap[code]) {
-              const merchantRes = await fetchMerchantDetail(code);
-              merchantMap[code] = merchantRes.data.mchtName;
-            }
-          })
-        );
-
-        setMerchantNames(merchantMap);
-  
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-  
-    getPaymentsAndMerchants();
+    fetchPaymentsData();
   }, []);
+
+  // 가맹점 이름 미리 불러오기
+  useEffect(() => {
+    const loadMerchants = async () => {
+      const codes = payments.map((p) => p.mchtCode);
+      await Promise.all(codes.map((code) => fetchMerchantDetail(code)));
+    };
+    if (payments.length > 0) loadMerchants();
+  }, [payments]);
+
+  // 로딩
+  if (loading) return <Loader />;
 
   // 결제 수단
   const payTypeLabels: Record<PaymentItem["payType"], string> = {
@@ -69,20 +59,6 @@ export function Payments() {
     FAILED: "결제 실패",
     PENDING: "결제 대기"
   };
-
-  // 페이지네이션
-  const pageSize = 10;
-  const [page, setPage] = useState(1);
-  const reversedPayments = [...payments].reverse();
-
-  const pagedData = reversedPayments.slice(
-    (page - 1) * pageSize,
-    page * pageSize
-  );
-  const totalPages = Math.ceil(payments.length / pageSize);
-
-  // 로딩
-  if (loading) return <Loader />;
 
   return (
     <div className="mt-10 mb-8 flex flex-col gap-10">
@@ -130,7 +106,7 @@ export function Payments() {
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-semibold text-blue-gray-600">
-                          {merchantNames[mchtCode] || "로딩 중..."} 
+                          {merchants[mchtCode]?.mchtName || "로딩 중..."} 
                           <span className="font-medium text-blue-gray-300"> ({mchtCode})</span>
                         </Typography>
                       </td>

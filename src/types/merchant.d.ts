@@ -11,8 +11,16 @@ export interface MerchantDetail {
   updatedAt: string;      // 수정일 (ISO 문자열)
 }
 
+// 가맹점 상세
 export interface MerchantDetailResponse {
   status: number;     
   message: string;     
   data: MerchantDetail;   
+}
+
+// 가맹점 전체 상세
+export interface MerchantListResponse {
+  status: number;
+  message: string;
+  data: MerchantDetail[];
 }

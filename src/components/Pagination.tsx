@@ -20,7 +20,7 @@ const Pagination: React.FC<PaginationProps> = ({ page, totalPages, onChange }) =
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 flex-wrap">
       <IconButton
         variant="text"
         onClick={handlePrev}
