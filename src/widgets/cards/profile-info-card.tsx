@@ -1,12 +1,13 @@
-import PropTypes from "prop-types";
 import {
   Card,
   CardHeader,
   CardBody,
   Typography,
 } from "@material-tailwind/react";
+import { ProfileInfoCardProps } from "@/types/ui";
 
-export function ProfileInfoCard({ title, description, details, action }) {
+
+export function ProfileInfoCard({ title, description, details, action }: ProfileInfoCardProps) {
   return (
     <Card color="transparent" shadow={false}>
       <CardHeader
@@ -66,12 +67,6 @@ ProfileInfoCard.defaultProps = {
   action: null,
   description: null,
   details: {},
-};
-
-ProfileInfoCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.node,
-  details: PropTypes.object,
 };
 
 ProfileInfoCard.displayName = "/src/widgets/cards/profile-info-card.tsx";

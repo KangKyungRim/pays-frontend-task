@@ -1,12 +1,7 @@
 import React from "react";
 import { Button, IconButton } from "@material-tailwind/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-
-interface PaginationProps {
-  page: number;    
-  totalPages: number;   
-  onChange: (page: number) => void; 
-}
+import { PaginationProps } from "@/types/ui";
 
 const Pagination: React.FC<PaginationProps> = ({ page, totalPages, onChange }) => {
   const handlePrev = () => {

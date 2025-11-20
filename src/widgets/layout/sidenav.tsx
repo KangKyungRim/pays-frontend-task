@@ -60,8 +60,8 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 </Typography>
               </li>
             )}
-            {pages.map(({ icon, name, path }) => (
-              <li key={name}>
+            {pages.map(({ icon, name, path, sideNavHidden }) => (
+              <li key={name} className={sideNavHidden ? "hidden" : ""}>
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (
                     <Button

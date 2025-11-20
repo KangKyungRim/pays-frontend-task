@@ -1,4 +1,9 @@
 export interface PaymentItem {
+  [x: string]: colors | undefined;
+  number: ReactNode;
+  merchantName: string;
+  payTypeLabel: ReactNode;
+  statusLabel: ReactNode;
   paymentCode: string;
   mchtCode: string;
   amount: string;

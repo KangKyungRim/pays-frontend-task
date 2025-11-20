@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
-  const { fixedNavbar, openSidenav } = controller;
+  const { fixedNavbar } = controller;
   const { pathname } = useLocation();
   const [ pageNameState, setPageNameState ] = useState<string>("");
 

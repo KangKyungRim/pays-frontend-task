@@ -19,7 +19,7 @@ export interface MerchantDetailResponse {
 }
 
 // 가맹점 전체 상세
-export interface MerchantListResponse {
+export interface MerchantAllResponse {
   status: number;
   message: string;
   data: MerchantDetail[];
