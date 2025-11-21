@@ -9,6 +9,7 @@ import {
 } from "@/context";
 import { getPageName } from "@/utils/getPageName";
 import { useEffect, useState } from "react";
+import { matchPath } from "react-router-dom";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
@@ -20,6 +21,15 @@ export function DashboardNavbar() {
   useEffect(() => {
     setPageNameState(getPageName(`/${pathname.split("/").filter(Boolean).pop()}`));
   }, [pathname]);
+
+  const location = useLocation();
+
+  // 숨기고 싶은 경로 목록
+  const hiddenBreadcrumbPaths = ["/dashboard/merchants/:mchtCode"];
+
+  const showBreadcrumb = !hiddenBreadcrumbPaths.some(path =>
+    matchPath(path, location.pathname)
+  );
 
   return (
     <Navbar
@@ -35,9 +45,7 @@ export function DashboardNavbar() {
       <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
         <div className="capitalize">
           <Breadcrumbs
-            className={`bg-transparent p-0 transition-all ${
-              fixedNavbar ? "mt-1" : ""
-            }`}
+            className={`bg-transparent p-0 transition-all ${fixedNavbar ? "mt-1" : ""} ${!showBreadcrumb ? "hidden" : ""}`}
           >
             <Link to={`/`}>
               <Typography
