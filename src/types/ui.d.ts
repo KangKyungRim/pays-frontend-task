@@ -1,6 +1,7 @@
 // src/types/ui.ts
 import { ReactNode, ComponentType, ElementType } from "react";
 import { ChipProps } from "@material-tailwind/react";
+import { ApexOptions } from "apexcharts";
 
 // ProfileInfoCard
 export interface ProfileInfoCardProps {
@@ -56,9 +57,9 @@ export interface NavbarProps {
 
 // Sidenav Page
 export interface SidenavPage {
-  icon: ReactNode;
   name: string;
   path: string;
+  icon?: JSX.Element;
   sideNavHidden?: boolean;
 }
 
@@ -87,6 +88,45 @@ export type MTColor =
   | "pink"
   | "deep-orange"
   | "blue-gray"
-  | "light-blue";
+  | "light-blue"
+  | "gray";
 
 export type SidenavType = "dark" | "white" | "transparent";
+
+// chart
+export type ChartType =
+  | "area"
+  | "line"
+  | "bar"
+  | "pie"
+  | "donut"
+  | "radialBar"
+  | "scatter"
+  | "bubble"
+  | "heatmap"
+  | "candlestick"
+  | "boxPlot"
+  | "radar"
+  | "polarArea"
+  | "rangeBar"
+  | "rangeArea"
+  | "treemap";
+
+export type ChartConfig = {
+  type: ChartType;    
+  height?: number;
+  series: { name: string; data: number[] }[];
+  options?: ApexOptions;
+};
+
+export type StatisticsChartProps = {
+  color?: 
+    | "white" | "blue-gray" | "gray" | "brown" | "deep-orange" | "orange"
+    | "amber" | "yellow" | "lime" | "light-green" | "green" | "teal"
+    | "cyan" | "light-blue" | "blue" | "indigo" | "deep-purple" | "purple"
+    | "pink" | "red";
+  chart: ChartConfig;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  footer?: React.ReactNode;
+};

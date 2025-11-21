@@ -69,7 +69,7 @@ export function MaterialTailwindControllerProvider({
 }: MaterialTailwindProviderProps) {
   const initialState: MaterialTailwindState = {
     openSidenav: false,
-    sidenavColor: "blue-gray",
+    sidenavColor: "gray",
     sidenavType: "white",
     transparentNavbar: true,
     fixedNavbar: false,

@@ -6,30 +6,25 @@ import {
   Chip,
   Card,
   CardHeader,
-  CardBody,
   IconButton,
   Menu,
   MenuHandler,
   MenuList,
   MenuItem,
-  Tooltip,
-  Progress,
 } from "@material-tailwind/react";
 import {
   EllipsisVerticalIcon,
 } from "@heroicons/react/24/outline";
 import { StatisticsCard } from "@/widgets/cards";
 import { StatisticsChart } from "@/widgets/charts";
-import {
-  statisticsChartsData,
-} from "@/data";
 import { 
   CurrencyDollarIcon, 
   BanknotesIcon, 
   BuildingStorefrontIcon, 
   WalletIcon 
 } from "@heroicons/react/24/solid";
-import GenericTable, { Column } from "@/components/GenericTable";
+import GenericTable from "@/components/GenericTable";
+import { Column } from "@/types/ui";
 import { usePaymentsStore } from "@/stores/paymentsStore";
 import { useAllMerchantStore } from "@/stores/merchantStore";
 import { useMerchantStore } from "@/stores/merchantStore";

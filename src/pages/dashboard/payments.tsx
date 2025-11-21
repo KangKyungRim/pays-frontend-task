@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Typography, Chip } from "@material-tailwind/react";
-import GenericTable, { Column } from "@/components/GenericTable";
+import GenericTable from "@/components/GenericTable";
+import { Column } from "@/types/ui";
 
 import { usePaymentsStore } from "@/stores/paymentsStore";
 import { useMerchantStore } from "@/stores/merchantStore";
